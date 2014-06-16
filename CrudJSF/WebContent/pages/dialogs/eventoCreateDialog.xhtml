@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="/WEB-INF/templates/dialogs/createDialog.xhtml">
+		<ui:define name="insertColumns">
+			<h:outputText value="* #{bundle.eventName}" />
+			<h:inputText value="#{entityMB.entity.nome}" required="true" label="#{bundle.eventName}" >
+				<f:validateLength minimum="4" />
+			</h:inputText>
+			<h:outputText value="#{bundle.eventDescription}" />
+			<h:inputText value="#{entityMB.entity.descricao}" label="#{bundle.eventDescription}" />
+			<h:outputText value="#{bundle.eventDate}" />
+			<p:calendar pattern="dd/MM/yyyy" value="#{entityMB.entity.data}" label="#{bundle.eventDate}" />
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

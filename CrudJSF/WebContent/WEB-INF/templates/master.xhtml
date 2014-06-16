@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title><h:outputText value="OINA - #{bundle.eventControlTitle}" /></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="image/x-icon" href="#{resource['images:oina_favicon.ico']}" rel="shortcut icon"></link>
+</h:head>
+
+<h:body>
+	<!-- Adiciona o arquivo de CSS por último, para sobrescrever qualquer comportamento do tema do Primefaces
+	-->
+	<f:facet name="last">
+		<h:outputStylesheet library="css" name="main.css" />
+	</f:facet>
+	
+	<f:view contentType="text/html; charset=UTF-8" encoding="UTF-8" locale="#{userMB.locale}">
+		<div id="divTop">
+			<ui:insert name="divTop">
+				<ui:include src="top.xhtml" />
+			</ui:insert>
+		</div>
+
+		<div id="divLeft">
+			<!-- <div id="divImage"/> -->
+			<ui:insert name="divLeft">
+				<ui:include src="left.xhtml" />
+			</ui:insert>
+		</div>
+
+		<div id="divMain">
+			<p:growl id="messageGrowl" life="10000" autoUpdate="true"/>
+
+			<!-- 
+			<p:ajaxStatus onstart="statusDialog.show();" oncomplete="statusDialog.hide();"/>  
+
+            <p:dialog modal="false" widgetVar="statusDialog" header="Loading"   
+                      draggable="false" closable="false">  
+                <p:graphicImage value="../resources/images/ajax-loader-square.gif" />  
+            </p:dialog>
+			 -->
+			<ui:insert name="divMain" />
+		</div>
+	</f:view>
+	<h:outputScript library="javascript" name="jscodes.js" />
+</h:body>
+</html>

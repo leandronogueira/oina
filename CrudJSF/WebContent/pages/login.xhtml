@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title><h:outputText value="OINA - #{bundle.eventControlTitle}" /></title>
+	<h:outputScript>
+	$( document ).ready(function() {
+		$("input[id='login-form:username']").attr('placeholder','<h:outputText value="#{bundle.loginUserName}" />');
+		$("input[id='login-form:password']").attr('placeholder','<h:outputText value="#{bundle.loginPassword}" />');
+		$("input[id='login-form:username']").focus();
+		/*
+		$('#login-form').validate({
+			rules:{
+		        'login-form:email': {
+		            required: true,
+		            email: true
+		        },
+		        'login-form:password': {
+		            required: true
+		        }
+	        },
+	        messages:{
+	            'login-form:email': {
+	                required: '<h:outputFormat value="#{bundle.requiredField}"><f:param value="#{bundle.loginUserName}"/></h:outputFormat>',
+	                email: '<h:outputFormat value="#{bundle.emailField}"><f:param value="#{bundle.loginUserName}"/></h:outputFormat>'
+	            },
+	            'login-form:password': {
+	                required: '<h:outputFormat value="#{bundle.requiredField}"><f:param value="#{bundle.loginPassword}"/></h:outputFormat>'
+	            }
+	        }
+		});
+		*/
+	});
+	</h:outputScript>
+	<h:outputStylesheet library="css" name="main.css"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="image/x-icon" href="#{resource['images:oina_favicon.ico']}" rel="shortcut icon"></link>
+</h:head>
+<h:body>
+<f:view contentType="text/html; charset=UTF-8" encoding="UTF-8" locale="#{userMB.locale}">
+	<div id="divTop">
+		<ui:include src="/WEB-INF/templates/top.xhtml" />
+	</div>
+	<p:spacer height="180px" />
+	<div class="card signin-card clearfix">
+		<h:graphicImage library="images" name="avatar.png" styleClass="perfil" />
+		<h:form id="login-form">
+			<p:growl showDetail="false" life="9000" />
+			<h:panelGrid columns="1" style="text-align: center; width: 100%">
+				<h2>#{bundle.loginHello}</h2>
+				
+				<h:inputText value="#{loginMB.username}" label="#{bundle.loginUserName}" required="true" id="username"/>
+				<h:inputSecret value="#{loginMB.password}" label="#{bundle.loginPassword}" required="true" id="password" autocomplete="off"/>
+				
+				<p:commandButton action="#{loginMB.login}" value="#{bundle.logIn}" ajax="false" style="font-size: 1.0em;" />
+			</h:panelGrid>
+		</h:form>
+	</div>
+</f:view>
+</h:body>
+</html>

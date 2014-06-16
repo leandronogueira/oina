@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>Sistema</display-name>
+    <welcome-file-list>
+        <welcome-file>pages/home.xhtml</welcome-file>
+    </welcome-file-list>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern>
+        <url-pattern>*.jsf</url-pattern>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+    <!--
+    <filter>
+          <filter-name>EncodingFilter</filter-name>
+          <filter-class>br.org.na.sistema.util.EncodingFilter</filter-class>
+     </filter>
+     <filter-mapping>
+          <filter-name>EncodingFilter</filter-name>
+          <url-pattern>/*</url-pattern>
+     </filter-mapping>
+    -->
+ 
+    <!-- Protected area definition -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Restricted Common Area</web-resource-name>
+            <url-pattern>/pages/home.xhtml</url-pattern>
+            <url-pattern>/pages/dialogs/eventoDetailDialog.xhtml</url-pattern>
+            <url-pattern>/pages/eventoList.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMIN</role-name>
+            <role-name>USER</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Restricted Area - ADMIN</web-resource-name>
+            <url-pattern>/pages/dialogs/eventoCreateDialog.xhtml</url-pattern>
+            <url-pattern>/pages/dialogs/eventoDeleteDialog.xhtml</url-pattern>
+            <url-pattern>/pages/dialogs/eventoUpdateDialog.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMIN</role-name>
+        </auth-constraint>
+    </security-constraint>
+ 
+    <!-- Login page -->
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/pages/login.xhtml</form-login-page>
+            <form-error-page>/pages/loginError.xhtml</form-error-page>
+        </form-login-config>
+    </login-config>
+ 
+    <!-- System roles -->
+    <security-role>
+        <role-name>ADMIN</role-name>
+    </security-role>
+    <security-role>
+        <role-name>USER</role-name>
+    </security-role>
+    
+    <error-page>
+    	<error-code>403</error-code>
+    	<location>/pages/accessDenied.xhtml</location>
+    </error-page>
+
+    <error-page>
+    	<error-code>404</error-code>
+    	<location>/pages/accessDenied.xhtml</location>
+    </error-page>
+   
+    <error-page>
+    	<exception-type>com.sun.faces.context.FacesFileNotFoundException</exception-type>
+    	<location>/pages/accessDenied.xhtml</location>
+    </error-page>
+    
+    <error-page>
+    	<exception-type>javax.faces.application.ViewExpiredException</exception-type>
+    	<location>/pages/login.xhtml</location>
+    </error-page>
+    
+    <context-param>  
+	    <param-name>primefaces.THEME</param-name>  
+	    <param-value>humanity</param-value>  
+	</context-param>
+	
+	<context-param>
+	    <param-name>javax.faces.FACELETS_LIBRARIES</param-name>
+	    <param-value>/WEB-INF/mytaglib.xml</param-value>
+ 	</context-param>
+
+</web-app>

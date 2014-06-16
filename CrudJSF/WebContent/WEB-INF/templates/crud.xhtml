@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="/WEB-INF/templates/master.xhtml">
+		<ui:define name="divMain">
+			<h:form id="searchForm" prependId="false">
+				<p:fieldset legend="#{bundle['searchFilter']}">
+				    <h:panelGrid columns="2">
+					    
+					    <ui:insert name="filterColumns" />
+					  	
+					    <p:commandButton value="#{bundle['search']}" icon="ui-icon-search" style="height: 32px;"
+					    	onstart="$('#load').attr('style','display:block')" oncomplete="$('#load').attr('style','display:none')"
+					       	action="#{entityMB.search()}" update=":#{entityPluralName}Form:#{entityPluralName}Table"/>
+					  	
+					  	<h:column>
+					  	<div style="display: none;" id="load">
+			        		<h:graphicImage library="images" name="ajax-loader.gif"  />
+				        </div>
+					  	</h:column>
+					        
+				    </h:panelGrid>
+				</p:fieldset>
+			</h:form>
+			
+			<p:spacer height="30px" />
+			
+			<ui:param name="allowDetail" value="#{showDetailButton == null ? true : showDetailButton}" />
+			<ui:param name="allowCreate" value="#{showCreateButton == null ? true : showCreateButton}" />
+			<ui:param name="allowUpdate" value="#{showUpdateButton == null ? true : showUpdateButton}" />
+			<ui:param name="allowDelete" value="#{showDeleteButton == null ? true : showDeleteButton}" />
+			
+			<h:form id="#{entityPluralName}Form" style="width: 100%;">
+				<p:dataTable id="#{entityPluralName}Table" value="#{entityMB.list}" var="entity" emptyMessage="#{bundle.noRecords}"
+					paginator="true" rows="10" paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink}"
+					paginatorPosition="top">
+					
+					<ui:insert name="dataColumns" />
+					
+					<p:column width="1" style="white-space: nowrap;">
+						<p:commandButton title="#{bundle.detail}" icon="ui-icon-bullet" oncomplete="#{entityName}DetailDialogWidget.show();"
+							update=":#{entityName}DetailDialogForm" rendered="#{allowDetail}">
+							<f:setPropertyActionListener target="#{entityMB.entity}" value="#{entity}" />
+						</p:commandButton> 
+						<p:spacer width="10px" />
+						<p:commandButton title="#{bundle.update}" icon="ui-icon-pencil" update=":#{entityName}UpdateDialogForm"
+							oncomplete="#{entityName}UpdateDialogWidget.show(); $('##{entityName}UpdateDialogForm').find('input:text:eq(0):visible:enabled').focus();"
+							rendered="#{allowUpdate}">
+							<f:setPropertyActionListener target="#{entityMB.entity}" value="#{entity}" />
+						</p:commandButton>
+						<p:spacer width="10px" />
+						<p:commandButton title="#{bundle.delete}" icon="ui-icon-trash" update=":#{entityName}DeleteDialogForm"
+							oncomplete="#{entityName}DeleteDialogWidget.show();" rendered="#{allowDelete}">
+							<f:setPropertyActionListener target="#{entityMB.entity}" value="#{entity}" />
+						</p:commandButton>
+					</p:column>
+					
+					<f:facet name="footer">
+						<h:outputFormat value="#{bundle.totalRecords}">
+							<f:param value="#{empty entityMB.list ? 0 : entityMB.list.size()}" />
+						</h:outputFormat>
+					</f:facet>
+
+				</p:dataTable>
+				<br/>
+				
+				<p:commandButton value="#{bundle.create}" icon="ui-icon-plus" update=":#{entityName}CreateDialogForm"
+					actionListener="#{entityMB.resetEntity()}" onclick="#{entityName}CreateDialogWidget.show();"
+					rendered="#{allowCreate}" oncomplete="$('##{entityName}CreateDialogForm').find('input:text:eq(0):visible:enabled').focus();" />
+			</h:form>
+			
+			<ui:insert name="crudDialogs">
+				<ui:include src="/pages/dialogs/#{entityName}CreateDialog.xhtml" />
+				<ui:include src="/pages/dialogs/#{entityName}DetailDialog.xhtml" />
+				<ui:include src="/pages/dialogs/#{entityName}UpdateDialog.xhtml" />
+				<ui:include src="/pages/dialogs/#{entityName}DeleteDialog.xhtml" />
+			</ui:insert>
+			
+			<p:spacer height="30px"/>
+			
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

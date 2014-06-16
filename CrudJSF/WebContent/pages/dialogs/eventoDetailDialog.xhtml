@@ -1,0 +1,18 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="/WEB-INF/templates/dialogs/detailDialog.xhtml">
+		<ui:define name="detailColumns">
+			<h:outputText value="#{bundle.eventName}: " />
+			<h:outputText value="#{entityMB.entity.nome}" />
+			<h:outputText value="#{bundle.eventDescription}: " />
+			<h:outputText value="#{entityMB.entity.descricao}" />
+			<h:outputText value="#{bundle.eventDate}: " />
+			<h:outputText value="#{entityMB.entity.data}">
+				<f:convertDateTime pattern="dd/MM/yyyy"/>
+			</h:outputText>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

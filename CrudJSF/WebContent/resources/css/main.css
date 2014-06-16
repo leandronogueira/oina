@@ -1,0 +1,244 @@
+.topoEsquerdo {
+	width: 207px;
+}
+
+.topoDireito {
+	width: 207px;
+	text-align: center;
+	font: message-box;
+	color: white;
+}
+
+.topoCentro {
+	text-align: center;
+}
+
+html {
+	overflow-y: scroll;
+}
+
+body {
+	/* overflow: hidden; */
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+/* 	background-color: #EEEED1; */
+}
+
+input[type='text'],input[type='password'] {
+	color: #656565;
+    font-size: 18px;
+    height: 25px;
+    width: 210px;
+}
+
+label {
+	color: #67737B !important;
+	font-family: icon !important;
+	font-size: 0.8em !important;
+}
+
+h1,h2,h3 {
+	color: #698B69;
+}
+
+.tituloTopo {
+	color: #FFFFFF;
+	font-family: times new roman;
+	font-size: 1.6em;
+	font-weight: bold;
+	border-bottom: 1px solid;
+}
+
+a:link,a:visited,a:hover,a:active {
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.menu-button{
+	font-weight: bold;
+	width: 130px;
+	text-align: left;
+	top:10px;
+	bottom: 10px;
+	opacity: 0.75;
+}
+
+#divTop {
+	padding: 0;
+	padding-left: 10px;
+	margin: 0;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	right: 10px;
+	height: 145px;
+	overflow: auto;
+	background: -moz-linear-gradient(#5A775A,#698B69, #EEEED1);
+	background: linear-gradient(#5A775A, #698B69, #EEEED1);
+	border: 1px solid darkGray;	
+}
+
+#divLeft {
+	padding: 0;
+	padding-left: 10px;
+	margin: 0;
+	position: absolute;
+	top: 157px;
+	left: 10px;
+	/* bottom: 20px;
+	overflow: auto;
+	height: 100%; */
+	width: 140px;
+	border-top: thin solid lightGray;
+	font-size: 1.1em;
+	/* background-color: #EEEED1; */
+}
+
+#divImage {
+	background-color: #EEEED1;
+	background-image: url("/sistema/resources/images/jonica_640.png")/*, url("/sistema/resources/images/jonica-corpo_640.png")*/;
+	background-size: 88% 50%;
+	background-repeat: no-repeat/*, repeat-y*/;
+	padding: 0;
+	padding-left: 10px;
+	margin: 0;
+	position: fixed;
+	top: 158px;
+	left: 10px;
+	bottom: 20px;
+	opacity: 0.25;
+	width: 160px;
+}
+
+#divMain {
+	padding: 0;
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-top: 10px;
+	margin: 0;
+	position: absolute;
+	top: 157px;
+	left: 160px;
+	right: 10px;
+	/* bottom: 20px;
+	overflow: auto;
+	height: auto; */
+	border-top: thin solid lightGray;
+	/* background-color: #EEEED1; */
+}
+
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+}
+.signin-card {
+    padding: 40px;
+    width: 274px;
+}
+.card {
+    margin-bottom: 20px;
+}
+.card {
+    background-color: #F7F7F7;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    margin: 0 auto 25px;
+    padding: 20px 25px 30px;
+    width: 304px;
+}
+.clearfix {
+}
+
+/* .botao-login {
+    font-family: Arial,sans-serif;
+    background-color: #4D90FE;
+    background-image: -moz-linear-gradient(#FFFFFF, #1E4C08, #FFFFFF);
+    border: 1px solid #1E4C08;
+    color: #FFFFFF;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+} */
+
+.perfil {
+    border-radius: 25%;
+    display: block;
+    height: 96px;
+    margin: 0 auto 10px;
+    width: 96px;
+}
+
+.ui-state-highlight {
+    background: -moz-linear-gradient(center top , rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0)) repeat scroll 0 0 #FFFACD;
+    border: 1px solid #1E4C08;
+    color: #333333;
+    font-family: 'Lucida Grande', serif, sans-serif;
+    /* text-shadow: 1px 1px 1px #5A775A; */
+}
+
+.ui-widget {
+    font-family: Arial,sans-serif !important;
+    font-size: 0.85em !important;
+}
+
+.ui-growl {
+    position: fixed;
+    right: 10px;
+    top: 165px;
+    width: 301px;
+}
+
+.ui-widget-header {
+    /* background: linear-gradient(#CD853F, #DEB887, #F5DEB3) repeat scroll 0 0 rgba(0, 0, 0, 0); */
+    background: #F0B357 !important;
+    border: 1px solid #F0B357  !important;
+    border-bottom: 0 none;
+    color: #FFFFFF !important;
+    font-weight: bold !important;
+    padding: 4px !important;
+}
+
+.ui-widget-content {
+    color: #67737B !important;
+    font-size: 0.95em !important;
+}
+
+.ui-state-default {
+    color: #67737B !important;
+}
+
+.ui-state-hover {
+    color: #67737B !important;
+    opacity: 1.0 !important;
+}
+
+.ui-datatable-footer {
+	/* background: linear-gradient(#F9C576,#FCB955,#FBB040) repeat scroll 0 0 rgba(0, 0, 0, 0); */
+	background: #F0B357 !important;
+	padding: 6px 10px !important;
+	color: #FFFFFF !important;
+}
+
+.ui-state-active {
+    background: url("/sistema/javax.faces.resource/images/ui-bg_highlight-hard_100_f4f0ec_1x100.png.xhtml?ln=primefaces-humanity") repeat-x scroll 50% 50% #F4F0EC;
+    border: 1px solid #E1E1C4;
+    color: #5A775A;
+    font-weight: bolder;
+}
+
+.ui-fieldset-legend {
+	font-weight: bold !important;
+	font-family: icon !important;
+}
+
+.ui-fieldset {
+	width: 50%;
+}

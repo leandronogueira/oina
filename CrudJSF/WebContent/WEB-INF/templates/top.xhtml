@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+   <h:body>   
+     <ui:composition>
+     	<h:panelGrid columns="3" width="100%" columnClasses="topoEsquerdo,topoCentro,topoDireito">
+	     	<h:column>
+	     		<h:graphicImage library="images" name="#{userMB.logomarca}" width="207px" height="137px" />
+	     	</h:column>
+	     	<h:column>
+	     		<h:outputText value="#{bundle.eventControl}" styleClass="tituloTopo"/>
+	     	</h:column>
+	     	<h:column>
+	     		<h:panelGroup rendered="#{userMB.user != null}">
+			     	<h:form>
+		     			<h:outputText value="#{userMB.user.name}" style="font-size: 1.1em; font-weight: bold; color: #FFFFFF" />
+		     			<p:commandButton style="font-size: 0.65em; left: 5px;" title="#{bundle.logOut}" icon="ui-icon-power"
+		     							 action="#{userMB.logOut()}" ajax="false" />
+		   			</h:form>
+   				</h:panelGroup>
+	   			<h:form>
+		   			<h:commandLink action="#{userMB.switchLocale('pt','BR')}" title="Português">
+		   				<h:graphicImage library="images" name="brazil.png" />
+		   			</h:commandLink>
+		   			<h:commandLink action="#{userMB.switchLocale('en','')}" title="English">
+		   				<h:graphicImage library="images" name="usa.png" />
+	   				</h:commandLink>
+   				</h:form>
+		    </h:column>
+     	</h:panelGrid>
+     </ui:composition>   
+   </h:body>
+</html>

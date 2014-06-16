@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="/WEB-INF/templates/crud.xhtml">
+		<ui:param name="entityName" value="evento" />
+		<ui:param name="entityPluralName" value="eventos" />
+		<ui:param name="entityMB" value="#{eventoMB}" />
+		
+		<!-- 
+		 -->
+		<ui:param name="showUpdateButton" value="#{userMB.isAdmin()}" />
+		<ui:param name="showDeleteButton" value="#{userMB.isAdmin()}" />
+		<ui:param name="showCreateButton" value="#{userMB.isAdmin()}" />
+		
+		<ui:define name="filterColumns">
+			<h:outputLabel for="name" value="#{bundle.eventName}:" />
+		    <p:inputText id="name" value="#{entityMB.filter.nome}" label="#{bundle.eventName}" />
+		  	
+		    <h:outputLabel for="description" value="#{bundle.eventDescription}:" />
+		    <p:inputText id="description" value="#{entityMB.filter.descricao}" label="#{bundle.eventDescription}"/>
+		    
+		    <h:outputLabel for="date" value="#{bundle.dateRange}:" />
+		    <h:panelGroup id="date">
+		    	<p:calendar value="#{entityMB.filter.inicioPeriodo}" pattern="dd/MM/yyyy" placeholder="#{bundle.dateRangeStart}" />
+		    	<p:spacer width="5px" />
+		    	<h:outputText value="#{bundle.dateRangeTo}"/>
+		    	<p:spacer width="5px" />
+		    	<p:calendar value="#{entityMB.filter.fimPeriodo}" pattern="dd/MM/yyyy" placeholder="#{bundle.dateRangeEnd}"/>
+		    </h:panelGroup>
+		    
+		</ui:define>
+		
+		<ui:define name="dataColumns">
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{bundle.eventName}" />
+				</f:facet>
+
+				<h:outputText value="#{entity.nome}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{bundle.eventDescription}" />
+				</f:facet>
+
+				<h:outputText value="#{entity.descricao}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="#{bundle.eventDate}" />
+				</f:facet>
+
+				<h:outputText value="#{entity.data}">
+					<f:convertDateTime pattern="dd/MM/yyyy"/>
+				</h:outputText>
+			</p:column>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

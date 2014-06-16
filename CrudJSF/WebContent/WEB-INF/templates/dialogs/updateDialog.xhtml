@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<p:dialog widgetVar="#{entityName}UpdateDialogWidget" header="#{empty headerText ? bundle.update : headerText}"
+		id="#{entityName}UpdateDialogId" width="400" modal="true"
+		closable="true" draggable="false" resizable="false">
+		<h:form id="#{entityName}UpdateDialogForm" prependId="false">
+			<h:panelGrid columns="2">
+				
+				<ui:insert name="updateColumns"/>
+		
+				<p:commandButton value="#{bundle.update}" icon="ui-icon-check"
+					action="#{entityMB.update()}"
+					update=":#{entityPluralName}Form:#{entityPluralName}Table"
+					oncomplete="closeDialogIfSucess(xhr, status, args, #{entityName}UpdateDialogWidget, '#{entityName}UpdateDialogId')" />
+				<p:commandButton value="#{bundle.cancel}" icon="ui-icon-cancel" actionListener="#{entityMB.resetEntity()}"
+					onclick="#{entityName}UpdateDialogWidget.hide();" type="button" />
+			</h:panelGrid>
+		</h:form>
+	</p:dialog>
+</h:body>
+</html>
